@@ -7,7 +7,7 @@ public class GameWindow extends JFrame{
 	public GameScreen gameScreen; 
 	
 	public GameWindow() {
-		super("FruitBasketCatcher");
+		super("Fruit Basket Catcher");
 		setSize(800,800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameScreen = new GameScreen();

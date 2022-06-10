@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import fruits.Apple;
@@ -15,9 +16,13 @@ import fruits.Pear;
 
 public class GameScreen extends JPanel implements Runnable, KeyListener{
 	
+	public static final float GRAVITY = 0.2f; 
 	public static final float GROUND = 650;
 	
 	private int i = 0;  
+	
+	public int score = 0; 
+	
 	private Thread thread;
 	private Apple apple; 
 	private Grape grape; 
@@ -42,11 +47,38 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 	@Override
 	public void run() {
 		while(true) {
+			try {
+				
+				apple.update();
+				grape.update();
+				mango.update();
+				orange.update();
+				pear.update();
+				
+				Thread.sleep(20);
+				repaint();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
+			if(apple.y == 650 || grape.y == 650 || mango.y == 650 || orange.y == 650 || pear.y == 650) {
+				score = 0; 
+				
+				apple.y = 0; 
+				grape.y = 0; 
+				mango.y = 0; 
+				orange.y = 0;
+				pear.y = 0; 
+				
+				System.out.println(score);
+			}
 		}
 	}
 	
 	public void paint(Graphics g) {
+		super.paint(g);
+		
 		apple.draw(g);
 		grape.draw(g);
 		mango.draw(g);
@@ -55,6 +87,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 		
 		g.setColor(Color.black);
 		g.drawLine(0, (int) GROUND, getWidth(), (int) GROUND);
+		
+		g.drawString("Score: " + score , 700, 750);
 	}
 
 	@Override
@@ -65,11 +99,32 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("Key Pressed");
-	}
+		
+		int key = e.getKeyCode();
+		
+		if(key == KeyEvent.VK_C) {
+			apple.y = 0; 
+			score = score + 5; 
+		}
+		if(key == KeyEvent.VK_I) {
+			grape.y = 0; 
+			score = score + 7;
+		}
+		if(key == KeyEvent.VK_R) {
+			mango.y = 0;
+			score = score + 3; 
+		}
+		if(key == KeyEvent.VK_L) {
+			orange.y = 0; 
+			score = score + 10; 
+		}
+		if(key == KeyEvent.VK_E) {
+			pear.y = 0;
+			score = score + 15; 
+		}
+}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println("Key Released");
 	}
 }
