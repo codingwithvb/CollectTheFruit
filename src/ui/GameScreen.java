@@ -90,6 +90,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 		g.drawLine(0, (int) GROUND, getWidth(), (int) GROUND);
 		
 		g.drawString("Score: " + score , 700, 750);
+		g.drawString("Collect The Fruit", 350, 750);
 	}
 
 	@Override
