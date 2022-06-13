@@ -37,6 +37,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 		mango = new Mango();
 		orange = new Orange(); 
 		pear = new Pear();
+		
+		setBackground(Color.white);
 	}
 	
 	public void startGame() {
@@ -71,7 +73,6 @@ public class GameScreen extends JPanel implements Runnable, KeyListener{
 				orange.y = 0;
 				pear.y = 0; 
 				
-				System.out.println(score);
 			}
 		}
 	}

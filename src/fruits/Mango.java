@@ -2,7 +2,11 @@ package fruits;
 
 import static ui.GameScreen.GROUND;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
+import util.Resource;
 
 public class Mango {
 	
@@ -11,7 +15,11 @@ public class Mango {
 	private float x = 350; 
 	public float y = 0; 
 	private float speedY = 0; 
-
+	private BufferedImage mangoImage;
+	
+	public Mango() {
+		mangoImage = Resource.getResourceImage("data/Mango.png");
+	}
 	public void update() {
 		if(y>=GROUND) {
 			speedY = 0; 
@@ -23,7 +31,9 @@ public class Mango {
 		
 		}	
 	public void draw(Graphics g) {
+		g.setColor(Color.white);
 		g.drawRect((int) x, (int) y, 50, 50);
+		g.drawImage(mangoImage,(int)x, (int)y, 50, 50, null);
 	}
 
 	public float getX() {

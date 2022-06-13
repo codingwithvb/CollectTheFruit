@@ -2,7 +2,11 @@ package fruits;
 
 import static ui.GameScreen.GROUND;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
+import util.Resource;
 
 public class Apple {
 	
@@ -11,6 +15,11 @@ public class Apple {
 	private float x = 30; 
 	public float y = 0; 
 	private float speedY = 0; 
+	private BufferedImage appleImage;
+	
+	public Apple() {
+		appleImage = Resource.getResourceImage("data/Apple.png");
+	}
 
 public void update() {
 	if(y>=GROUND) {
@@ -23,7 +32,9 @@ public void update() {
 	
 	}	
 public void draw(Graphics g) {
+	g.setColor(Color.white);
 	g.drawRect((int) x, (int) y, 50, 50);
+	g.drawImage(appleImage,(int)x, (int)y, 50, 50, null);
 }
 
 public float getX() {

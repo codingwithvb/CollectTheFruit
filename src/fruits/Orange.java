@@ -2,7 +2,11 @@ package fruits;
 
 import static ui.GameScreen.GROUND;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
+import util.Resource;
 
 public class Orange {
 	
@@ -11,7 +15,11 @@ public class Orange {
 	private float x = 510; 
 	public float y = 0; 
 	private float speedY = 0; 
-
+	private BufferedImage orangeImage;
+	
+	public Orange() {
+		orangeImage = Resource.getResourceImage("data/Orange.png");
+	}
 	public void update() {
 		if(y>=GROUND) {
 			speedY = 0; 
@@ -23,7 +31,9 @@ public class Orange {
 		
 		}	
 	public void draw(Graphics g) {
+		g.setColor(Color.white);
 		g.drawRect((int) x, (int) y, 50, 50);
+		g.drawImage(orangeImage,(int)x, (int)y, 50, 50, null);
 	}
 
 	public float getX() {
